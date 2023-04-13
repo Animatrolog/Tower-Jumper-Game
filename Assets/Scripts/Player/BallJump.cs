@@ -15,12 +15,12 @@ public class BallJump : MonoBehaviour
     private Rigidbody _rigidbody;
     private bool _isJumping;
 
+    public UnityAction OnJump;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
     }
-
-    public UnityAction OnJump;
 
     public void Jump()
     {

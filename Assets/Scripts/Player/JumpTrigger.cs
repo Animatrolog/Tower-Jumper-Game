@@ -23,7 +23,7 @@ public class JumpTrigger : MonoBehaviour
     {
         if (GameStateManager.CurrentGameState == GameState.Defeat) return;
 
-        if (_ball.LastFixedPosition.y < collision.transform.position.y + 0.15f)
+        if (_ball.transform.position.y < collision.transform.position.y + 0.15f)
         {
             collision.collider.enabled = false;
             _rigidbody.velocity = _ball.LastFixedVelocity;

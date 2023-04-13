@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+using System.Collections;
 using UnityEngine;
 
 public class CounterAnimation : MonoBehaviour
@@ -6,21 +6,23 @@ public class CounterAnimation : MonoBehaviour
     [SerializeField] private float _animationSpeed = 1f;
     [SerializeField] private Vector3 _targetScale;
 
-    private bool _isAnimating;
+    private Coroutine _animationCoroutine;
 
-    public async void Animate(int count)
+    public void Animate(int count)
     {
-        if(_isAnimating) return;
+        _animationCoroutine ??= StartCoroutine(AnimationCoroutine());
+    }
+
+    public IEnumerator AnimationCoroutine()
+    {
         Vector3 originalScale = transform.localScale;
         transform.localScale = _targetScale;
-
-        _isAnimating = true;    
+  
         while(transform.localScale != originalScale)
         {
-            if(!gameObject) return;
-            transform.localScale = Vector3.MoveTowards(transform.localScale, originalScale, Time.unscaledDeltaTime * _animationSpeed);
-            await Task.Yield();
+            transform.localScale = Vector3.MoveTowards(transform.localScale, originalScale, Time.unscaledDeltaTime / _animationSpeed);
+            yield return null;
         }
-        _isAnimating = false;
+        _animationCoroutine = null;
     }
 }

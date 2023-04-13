@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0913a668e0e87e04ebebac2a840520ae
+guid: b75f9f604c2a64040a8229abfea8f743
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: 2f1e33de48e29724c9a89cd85896ba0b, type: 2}
+      name: Kolonna
+    second: {fileID: 2100000, guid: 1619027ea0d80b74883d7f9df6b2aff8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kolonna.002
+    second: {fileID: 2100000, guid: 1619027ea0d80b74883d7f9df6b2aff8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -75,12 +80,12 @@ ModelImporter:
     strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 1
-    tangentImportMode: 2
+    normalImportMode: 0
+    tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
-    normalSmoothingSource: 2
+    normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
   humanDescription:

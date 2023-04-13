@@ -26,6 +26,5 @@ public class Pause : MonoBehaviour
         AudioListener.pause = !hasFocus;
         if (GameStateManager.CurrentGameState == GameState.Game)
             Time.timeScale = hasFocus? 1f : 0f;
-            //PauseGame();
     }
 }

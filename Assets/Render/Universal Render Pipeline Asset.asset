@@ -32,6 +32,7 @@ MonoBehaviour:
   m_FsrSharpness: 0.92
   m_EnableLODCrossFade: 1
   m_LODCrossFadeDitheringType: 1
+  m_ShEvalMode: 0
   m_MainLightRenderingMode: 1
   m_MainLightShadowsSupported: 1
   m_MainLightShadowmapResolution: 4096
@@ -59,7 +60,7 @@ MonoBehaviour:
   m_SoftShadowQuality: 3
   m_AdditionalLightsCookieResolution: 1024
   m_AdditionalLightsCookieFormat: 3
-  m_UseSRPBatcher: 1
+  m_UseSRPBatcher: 0
   m_SupportsDynamicBatching: 1
   m_MixedLightingSupported: 0
   m_SupportsLightCookies: 0

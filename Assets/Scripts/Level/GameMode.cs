@@ -31,7 +31,7 @@ public class GameMode : MonoBehaviour
             {
                 if (!_ball || !TowerPieces[i]) return;
                 
-                if (_ball.LastFixedPosition.y < TowerPieces[i].transform.position.y - 0.2f)
+                if (_ball.transform.position.y < TowerPieces[i].transform.position.y - 0.2f)
                     break;
                 await Task.Yield();
             }

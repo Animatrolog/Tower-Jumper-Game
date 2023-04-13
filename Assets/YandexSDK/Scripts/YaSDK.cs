@@ -195,7 +195,6 @@ public class YaSDK : MonoBehaviour
     {
         for (int i = _InterstitialInterval; i > 0; i--)
         {
-            Debug.Log(i + "Seconds until interstitial ad");
             yield return new WaitForSecondsRealtime(1);
         }
         IsInterstitialReady = true;
