@@ -32,7 +32,8 @@ public class BallAudio : MonoBehaviour
     private void Jump()
     {
         _audioSource.pitch = Random.Range(1.2f, 2.0f);
-        _audioSource.PlayOneShot(_jumpClip);
+        _audioSource.clip = _jumpClip;
+        _audioSource.Play();
     }
 
     private void Meteor()

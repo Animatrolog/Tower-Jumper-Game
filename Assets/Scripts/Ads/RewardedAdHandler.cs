@@ -7,41 +7,41 @@ public class RewardedAdHandler : MonoBehaviour
     [SerializeField] private UnityEvent _onRewardEarned;
     [SerializeField] private AdPanel _adPanel;
 
-    private GameDataManager _gameDataManager;
-
     private void OnEnable()
     {
         YaSDK.Instance.OnRewardedAdReward += RewardedVideoAdRewardedEvent;
+        YaSDK.Instance.OnRewardedAdClosed += HidePanel;
+        YaSDK.Instance.OnRewardedAdError += HidePanel;
     }
 
     private void OnDisable()
     {
         YaSDK.Instance.OnRewardedAdReward -= RewardedVideoAdRewardedEvent;
-    }
-
-    private void Start()
-    {
-        _gameDataManager = GameDataManager.Instance;
+        YaSDK.Instance.OnRewardedAdClosed -= HidePanel;
+        YaSDK.Instance.OnRewardedAdError -= HidePanel;
     }
 
     public void ShowRewardedAd()
     {
-        if (!_gameDataManager.IsAdsEnabled)
-        {
-            _onRewardEarned?.Invoke();
-            return;
-        }
-
+        ShowPanel();
         YaSDK.Instance.ShowRewarded(_placementName);
-        _adPanel.ShowPanel(true);
     }
 
     private void RewardedVideoAdRewardedEvent(string placementName)
     {
         if (placementName == _placementName)
         {
-            _adPanel.ShowPanel(false);
             _onRewardEarned?.Invoke();
         }
+    }
+
+    private void ShowPanel() 
+    {
+        _adPanel.ShowPanel(true);
+    }
+
+    private void HidePanel()
+    {
+        _adPanel.ShowPanel(false);
     }
 }

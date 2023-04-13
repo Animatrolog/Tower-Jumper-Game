@@ -8,7 +8,7 @@ public class JumpTrigger : MonoBehaviour
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private float _velocityBreakFactor;
     [SerializeField] private MeteorMode _meteorMode;
-    [SerializeField] private PlayerResurector _resurector;
+    [SerializeField] private BallDamage _damage;
 
     private Ball _ball;
 
@@ -23,7 +23,7 @@ public class JumpTrigger : MonoBehaviour
     {
         if (GameStateManager.CurrentGameState == GameState.Defeat) return;
 
-        if (_ball.LastFixedPosition.y < collision.transform.position.y + 0.1f)
+        if (_ball.LastFixedPosition.y < collision.transform.position.y + 0.15f)
         {
             collision.collider.enabled = false;
             _rigidbody.velocity = _ball.LastFixedVelocity;
@@ -47,11 +47,7 @@ public class JumpTrigger : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Deadly"))
         {
-            GetComponent<DefeatStateTrigger>().TriggerDefeatState();
-            _resurector.PrepareResurection(piece);
-            _rigidbody.velocity = Vector3.zero;
-            Time.timeScale = 0f;
-            return;
+            _damage.Damage();
         }
         _jump.Jump();
     }

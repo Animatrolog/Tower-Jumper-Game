@@ -10,7 +10,7 @@ public class GameMode : MonoBehaviour
 
     public List<FloorPiece> TowerPieces;
     public UnityAction OnFloorReached;
-
+    public FloorPiece CurrentPiece { get; private set; }
 
     private void OnEnable()
     {
@@ -26,6 +26,7 @@ public class GameMode : MonoBehaviour
     {
         for ( int i = 0; i < TowerPieces.Count; i++)
         {
+            CurrentPiece = TowerPieces[i];
             while(true)
             {
                 if (!_ball || !TowerPieces[i]) return;

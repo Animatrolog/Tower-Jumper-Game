@@ -51,13 +51,15 @@ public class UiSoundManager : MonoBehaviour
     public void PlayOpen()
     {
         _audioSource.pitch = 1f;
-        _audioSource.PlayOneShot(_openClip);
+        _audioSource.clip = _openClip;
+        _audioSource.Play();
     }
 
     public void PlayClose()
     {
         _audioSource.pitch = 1f;
-        _audioSource.PlayOneShot(_closeClip);
+        _audioSource.clip = _closeClip;
+        _audioSource.Play();
     }
 
     public void PlayColorChange()

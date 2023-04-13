@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerResurector : MonoBehaviour
@@ -11,14 +9,11 @@ public class PlayerResurector : MonoBehaviour
     [SerializeField] private GameObject _resurectButton;
     [SerializeField] private ParticleSystem _particles;
 
-    private FloorPiece _lastPiece;
-
-    public void PrepareResurection(FloorPiece lastPiece)
+    public void PrepareResurection()
     {
         _resurectButton.SetActive(_resurectionsCount > 0);
         if(_resurectionsCount < 1)
             return;
-        _lastPiece = lastPiece;
     }
 
     public void ResurectPlayer()
@@ -32,8 +27,9 @@ public class PlayerResurector : MonoBehaviour
 
     private void ReplaceFloorPiece()
     {
-        FloorPiece piece = Instantiate(_resurectionPiece, _lastPiece.transform.position, Quaternion.LookRotation(Vector3.Scale(transform.position, new(1, 0, 1))));
-        _gameMode.TowerPieces[_gameMode.TowerPieces.IndexOf(_lastPiece)] = piece;
-        _lastPiece.gameObject.SetActive(false);
+        FloorPiece lastPiece = _gameMode.CurrentPiece;
+        FloorPiece piece = Instantiate(_resurectionPiece, lastPiece.transform.position, Quaternion.LookRotation(Vector3.Scale(transform.position, new(1, 0, 1))));
+        _gameMode.TowerPieces[_gameMode.TowerPieces.IndexOf(lastPiece)] = piece;
+        lastPiece.gameObject.SetActive(false);
     }
 }

@@ -14,11 +14,7 @@ public class RewardedAdEditor : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(Count());
-    }
-
-    private void OnDestroy()
-    {
-        YaSDK.Instance.OnRewarded(placement);
+        YaSDK.Instance.SetRewardedOpen(0);
     }
 
     private IEnumerator Count()
@@ -32,10 +28,12 @@ public class RewardedAdEditor : MonoBehaviour
         }
         timerText.gameObject.SetActive(false);
         closeButton.gameObject.SetActive(true);
+        YaSDK.Instance.SetRewarded(placement);
     }
 
     public void CloseAd()
     {
+        YaSDK.Instance.SetRewardedClose(0);
         Destroy(gameObject);
     }
 }

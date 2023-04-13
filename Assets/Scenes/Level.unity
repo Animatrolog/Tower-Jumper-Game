@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 9376779}
   - component: {fileID: 9376780}
   - component: {fileID: 9376781}
+  - component: {fileID: 9376782}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -385,7 +386,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 9376772}
   _velocityBreakFactor: 0.5
   _meteorMode: {fileID: 9376776}
-  _resurector: {fileID: 9376779}
+  _damage: {fileID: 9376782}
   OnPieceBreak:
     m_PersistentCalls:
       m_Calls:
@@ -456,6 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2510efc5751664e9841b22be484ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _resurector: {fileID: 9376779}
   OnDefeat:
     m_PersistentCalls:
       m_Calls:
@@ -630,6 +632,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eda1d3e6060ce24db22046b593fd04b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9376782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9376756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96e29107abf4fcd4aa298fdff2a19909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defeatSateTrigger: {fileID: 9376777}
+  _lifes: 1
 --- !u!4 &68678482 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7732238479341501497, guid: 32092d9a9d3972142bf812e94e924a89, type: 3}
@@ -6608,7 +6624,7 @@ RectTransform:
   m_GameObject: {fileID: 1354390180}
   m_LocalRotation: {x: -0, y: -0, z: 0.000000029802319, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75000006, y: 0.75000006, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1794280965}
@@ -8320,6 +8336,7 @@ GameObject:
   - component: {fileID: 1794280968}
   - component: {fileID: 1794280967}
   - component: {fileID: 1794280966}
+  - component: {fileID: 1794280970}
   m_Layer: 5
   m_Name: ResurectButton
   m_TagString: Untagged
@@ -8336,7 +8353,7 @@ RectTransform:
   m_GameObject: {fileID: 1794280964}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000126, y: 1.0000126, z: 1.0000126}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 348781986}
@@ -8457,6 +8474,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794280964}
   m_CullTransparentMesh: 1
+--- !u!114 &1794280970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794280964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b93be940f7623d4a87fbb28f9df14af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _secondsForResurection: 11
+  _resurectButton: {fileID: 1794280964}
+  _timerText: {fileID: 1354390181}
+  _animation: {fileID: 1354390185}
 --- !u!1 &1821428830
 GameObject:
   m_ObjectHideFlags: 0
@@ -11452,7 +11485,6 @@ GameObject:
   - component: {fileID: 3243858944146078712}
   - component: {fileID: 3243858944146078714}
   - component: {fileID: 3243858944146078715}
-  - component: {fileID: 3243858944146078716}
   m_Layer: 5
   m_Name: Gameover Panel
   m_TagString: Untagged
@@ -11562,22 +11594,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _adPanel: {fileID: 321944754}
---- !u!114 &3243858944146078716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3243858944146078596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b93be940f7623d4a87fbb28f9df14af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _secondsForResurection: 11
-  _resurectButton: {fileID: 1794280964}
-  _timerText: {fileID: 1354390181}
-  _animation: {fileID: 1354390185}
 --- !u!224 &3243858944179391656
 RectTransform:
   m_ObjectHideFlags: 0

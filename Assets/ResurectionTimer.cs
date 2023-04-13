@@ -9,7 +9,7 @@ public class ResurectionTimer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private CounterAnimation _animation;
 
-    void Start()
+    void OnEnable()
     {
         CountSeconds();
         StartCoroutine(CountSeconds());

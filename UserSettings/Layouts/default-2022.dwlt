@@ -216,8 +216,8 @@ MonoBehaviour:
     y: 0
     width: 882
     height: 710
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 15}
@@ -273,8 +273,8 @@ MonoBehaviour:
     y: 0
     width: 754
     height: 987
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -416,9 +416,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: be710000
-      m_LastClickedID: 29118
-      m_ExpandedIDs: 18fbffff6c710000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: f655fcff7e56fcff5a5afcff50fbfeffd6fbfeffaefffeffec57ffff7258ffff4a5cffffa087ffff2688fffffe8bffff18fbffffe69b0000a49d0000a89d000096ac000040c500007ec50000cec60000d6c700009e440100ac44010042450100b6450100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1113,14 +1113,14 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/YandexSDK/Scripts/Editor
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: D:\Unity Projects\TowerCrush
+  m_LastProjectPath: D:\Unity Projects\TowerJumper
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 319}
-    m_SelectedIDs: 1c320000
-    m_LastClickedID: 12828
-    m_ExpandedIDs: 00000000c0780000c2780000c4780000c6780000c8780000ca780000cc780000ce780000d0780000d2780000d4780000d6780000d8780000
+    scrollPos: {x: 0, y: 300}
+    m_SelectedIDs: 0ed90000
+    m_LastClickedID: 55566
+    m_ExpandedIDs: 00000000bc780000be780000c0780000c2780000c4780000c6780000c8780000ca780000cc780000ce780000d0780000d2780000d4780000b27d0000b87d000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1148,7 +1148,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c0780000c2780000c4780000c6780000c8780000ca780000cc780000ce780000d0780000d2780000d4780000d6780000d8780000
+    m_ExpandedIDs: 00000000bc780000be780000c0780000c2780000c4780000c6780000c8780000ca780000cc780000ce780000d0780000d2780000d4780000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1175,7 +1175,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000d6710000fe7d00009e7a00002a6d0000bc6f0000b87f0100f07b00008a7c00000000000074c5020044780000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1239,7 +1239,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 29118
+  m_LastSelectedObjectID: 82964
 --- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52

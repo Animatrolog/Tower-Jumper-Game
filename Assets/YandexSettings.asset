@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 9e85f6dccdb9c9cdaa30b0c7349aae5a, type: 3}
   m_Name: YandexSettings
-  m_EditorClassIdentifier: NewAssembly:YandexSDK:Settings
+  m_EditorClassIdentifier: 
   buildPath: D:/Unity Projects/builds/New folder
-  projectName: TowerJumper
+  projectName: TowerCrushJumper

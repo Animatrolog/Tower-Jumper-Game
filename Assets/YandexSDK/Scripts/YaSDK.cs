@@ -16,6 +16,7 @@ public class YaSDK : MonoBehaviour
 
     private int _rewardedAdPlacementAsInt = 0;
     private string _rewardedAdPlacement = string.Empty;
+    private Coroutine _interstitialTimer = null;
 #if UNITY_EDITOR
     private GameObject _rewardedAdPrefab;
     private GameObject _interstitialAdPrefab;
@@ -24,12 +25,14 @@ public class YaSDK : MonoBehaviour
 
     public event UnityAction OnPlayerAuthenticated;
     public event UnityAction<string> OnGetPlayerData;
+
     public static event UnityAction OnInterstitialShown;
-    public event UnityAction<string> OnInterstitialFailed;
+    public static event UnityAction OnInterstitialFailed
+        ;
     public event UnityAction<int> OnRewardedAdOpened;
     public event UnityAction<string> OnRewardedAdReward;
-    public event UnityAction<int> OnRewardedAdClosed;
-    public event UnityAction<int> OnRewardedAdError;
+    public event UnityAction OnRewardedAdClosed;
+    public event UnityAction OnRewardedAdError;
         
     public bool IsInterstitialReady { get; private set; }
     public Platform CurrentPlatform { get; private set; }
@@ -48,7 +51,12 @@ public class YaSDK : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this);
         }
-        StartCoroutine(CountTillNextInterstitial());
+        StartTimer();
+    }
+
+    private void StartTimer()
+    {
+        _interstitialTimer ??= StartCoroutine(CountTillNextInterstitial());
     }
 
     public string GetLanguage()
@@ -137,12 +145,12 @@ public class YaSDK : MonoBehaviour
     public void SetInterstitialShown()
     {
         OnInterstitialShown?.Invoke();
-        StartCoroutine(CountTillNextInterstitial());
+        StartTimer();
     }
 
     public void SetInterstitialError(string error)
     {
-        OnInterstitialFailed?.Invoke(error);
+        OnInterstitialFailed?.Invoke();
     }
 
     public void SetRewardedOpen(int placement)
@@ -151,7 +159,7 @@ public class YaSDK : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    public void OnRewarded(string placement)
+    public void SetRewarded(string placement)
     {
         if (placement == _rewardedAdPlacement)
         {
@@ -159,7 +167,7 @@ public class YaSDK : MonoBehaviour
         }
     }
 #endif
-    public void OnRewarded(int placement)
+    public void SetRewarded(int placement)
     {
         if (placement == _rewardedAdPlacementAsInt)
         {
@@ -167,14 +175,14 @@ public class YaSDK : MonoBehaviour
         }
     }
 
-    public void OnRewardedClose(int placement)
+    public void SetRewardedClose(int placement)
     {
-        OnRewardedAdClosed?.Invoke(placement);
+        OnRewardedAdClosed?.Invoke();
     }
 
-    public void OnRewardedError(int placement)
+    public void SetRewardedError(int placement)
     {
-        OnRewardedAdError?.Invoke(placement);
+        OnRewardedAdError?.Invoke();
     }
 
     public void OpenRateUsWindow()
@@ -185,7 +193,11 @@ public class YaSDK : MonoBehaviour
 
     private IEnumerator CountTillNextInterstitial()
     {
-        yield return new WaitForSecondsRealtime(_InterstitialInterval);
+        for (int i = _InterstitialInterval; i > 0; i--)
+        {
+            Debug.Log(i + "Seconds until interstitial ad");
+            yield return new WaitForSecondsRealtime(1);
+        }
         IsInterstitialReady = true;
     }
 

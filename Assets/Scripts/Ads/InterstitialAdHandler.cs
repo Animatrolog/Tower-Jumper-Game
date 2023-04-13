@@ -4,9 +4,17 @@ public class InterstitialAdHandler : MonoBehaviour
 {
     [SerializeField] private AdPanel _adPanel;
 
-    private void OnEnable() => YaSDK.OnInterstitialShown += AdClose;
+    private void OnEnable()
+    {
+        YaSDK.OnInterstitialShown += AdClose;
+        YaSDK.OnInterstitialFailed += AdClose;
+    }
 
-    private void OnDisable() => YaSDK.OnInterstitialShown -= AdClose;
+    private void OnDisable()
+    {
+        YaSDK.OnInterstitialShown -= AdClose;
+        YaSDK.OnInterstitialFailed -= AdClose;
+    }
 
     public static InterstitialAdHandler Instance;
 
@@ -15,11 +23,12 @@ public class InterstitialAdHandler : MonoBehaviour
         Instance = this;
     }
 
-    public void ShowAd()
+    public bool ShowAd()
     {
-        if (!YaSDK.Instance.IsInterstitialReady) return;
+        if (!YaSDK.Instance.IsInterstitialReady) return false;
         YaSDK.Instance.ShowInterstitial();
         _adPanel.ShowPanel(true);
+        return true;
     }
 
     private void AdClose()

@@ -24,8 +24,8 @@ public class Pause : MonoBehaviour
     void OnApplicationFocus(bool hasFocus)
     {
         AudioListener.pause = !hasFocus;
-
         if (GameStateManager.CurrentGameState == GameState.Game)
-            PauseGame();
+            Time.timeScale = hasFocus? 1f : 0f;
+            //PauseGame();
     }
 }
