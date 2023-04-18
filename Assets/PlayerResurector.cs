@@ -19,7 +19,7 @@ public class PlayerResurector : MonoBehaviour
     public void ResurectPlayer()
     {
         ReplaceFloorPiece();
-        Time.timeScale = 1f;
+        TimeScaler.SetTimeScale(1f);
         _gameStateManager.SetState(GameState.Game);
         Instantiate(_particles, transform.position + (Vector3.up * .5f), Quaternion.identity, transform);
         _resurectionsCount--;

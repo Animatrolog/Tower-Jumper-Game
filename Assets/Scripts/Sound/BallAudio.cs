@@ -19,14 +19,14 @@ public class BallAudio : MonoBehaviour
 
     private void OnEnable()
     {
-        _damage.OnDamage += PlayDamage;
+        _damage.OnShieldBreak += PlayDamage;
         _jump.OnJump += PlayJump;
         _meteorMode.OnMeteorMode += PlayMeteor;
     }
 
     private void OnDisable()
     {
-        _damage.OnDamage += PlayDamage;
+        _damage.OnShieldBreak -= PlayDamage;
         _jump.OnJump -= PlayJump;
         _meteorMode.OnMeteorMode -= PlayMeteor;
     }

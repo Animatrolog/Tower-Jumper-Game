@@ -10,13 +10,13 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private GameObject _corePiece;
     [SerializeField] private Vector3 _offset;
     [SerializeField] private BallMovement _ball;
-
+    [SerializeField] private float _difficultyFactor = 0.001f;
     private int _level;
     private GameDataManager _gameDataManager;
     private int _previousIndex;
 
     public UnityAction OnLevelGenerationCompleate;
-    public List<FloorPiece> TowerPieces { get;private set; }
+    public List<FloorPiece> TowerPieces { get; private set; }
 
     public void NextLevel()
     {
@@ -43,7 +43,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void GenerateLevel()
     {
-        float deadlySliceProbability = _level * 0.01f;
+        float deadlySliceProbability = _level * _difficultyFactor;
         TowerPieces = new List<FloorPiece>();
         Random.InitState(_level);
 
@@ -56,6 +56,7 @@ public class LevelGenerator : MonoBehaviour
             }
             SpawnRandomPiece(i, deadlySliceProbability);
         }
+        Instantiate(_corePiece, _offset * _levelLenght, Quaternion.identity, transform);
         OnLevelGenerationCompleate?.Invoke();
     }
 

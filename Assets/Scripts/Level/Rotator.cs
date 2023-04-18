@@ -3,30 +3,20 @@ using UnityEngine;
 public class Rotator : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private RotationAxis _rotationAxis;
+    [SerializeField] private Vector3 _rotationAxis;
 
-    private Vector3 _rotationVector;
-
-    private void Start()
+    private void Update()
     {
-        switch(_rotationAxis)
-        {
-            case RotationAxis.Up:
-                _rotationVector = Vector3.up;
-                break;
-            case RotationAxis.Right:
-                _rotationVector = Vector3.right;
-                break;
-            case RotationAxis.Froward:
-                _rotationVector = Vector3.forward;
-                break;
-        }
+        if (_speed != 0 || _rotationAxis != Vector3.zero)
+            transform.Rotate(_rotationAxis, Time.deltaTime * _speed);
     }
 
-    void Update()
+    public void Initialize(Vector3 ratationAxis, float speed)
     {
-        transform.Rotate(_rotationVector, Time.deltaTime * _speed);
+        _speed = speed;
+        _rotationAxis = ratationAxis;
     }
+
 }
 
 public enum RotationAxis

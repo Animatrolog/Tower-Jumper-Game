@@ -144,7 +144,7 @@ Material:
     - _Reflections: 0
     - _ShadowMask: 0
     - _Shininess: 0.078125
-    - _Smoothness: 0.5
+    - _Smoothness: 0.7
     - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
     - _SpecSource: 0
@@ -162,8 +162,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
-    - _Color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowTint: {r: 0, g: 0, b: 0, a: 1}

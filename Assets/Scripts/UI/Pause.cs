@@ -12,13 +12,13 @@ public class Pause : MonoBehaviour
     public void PauseGame()
     {
         _gameStateManager.SetState(GameState.Pause);
-        Time.timeScale = 0f;
+        TimeScaler.SetTimeScale(0f);
     }
 
     public void ResumeGame()
     {
         _gameStateManager.SetState(GameState.Game);
-        Time.timeScale = 1f;
+        TimeScaler.SetTimeScale(1f);
     }
 
     void OnApplicationFocus(bool hasFocus)

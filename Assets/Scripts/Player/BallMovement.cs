@@ -13,7 +13,7 @@ public class BallMovement : MonoBehaviour
         CrowdDirection = transform.forward * 0.1f;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         MoveAround();
     }

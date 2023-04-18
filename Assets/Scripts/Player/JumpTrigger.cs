@@ -6,7 +6,6 @@ public class JumpTrigger : MonoBehaviour
 {
     [SerializeField] private BallJump _jump;
     [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private float _velocityBreakFactor;
     [SerializeField] private MeteorMode _meteorMode;
     [SerializeField] private BallDamage _damage;
 
@@ -30,18 +29,13 @@ public class JumpTrigger : MonoBehaviour
             return;
         }
 
-        FloorPiece piece = collision.gameObject.GetComponentInParent<FloorPiece>();
         
         if (_meteorMode.IsMeteorMode)
         {
-            if (piece == null)
-            {
-                _jump.Jump();
-                return;
-            }
+            FloorPiece piece = collision.gameObject.GetComponentInParent<FloorPiece>();
             piece.Break();
             OnPieceBreak?.Invoke();
-            _rigidbody.velocity = _ball.LastFixedVelocity * _velocityBreakFactor;
+            _rigidbody.velocity = _ball.LastFixedVelocity * _meteorMode.VelocityBreakFactor;
             return;
         }
 
@@ -52,5 +46,16 @@ public class JumpTrigger : MonoBehaviour
         _jump.Jump();
     }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        if (_meteorMode.IsMeteorMode)
+        {
+            FloorPiece piece = collision.gameObject.GetComponentInParent<FloorPiece>();
+            piece.Break();
+            OnPieceBreak?.Invoke();
+            _rigidbody.velocity = _ball.LastFixedVelocity * _meteorMode.VelocityBreakFactor;
+            return;
+        }
+    }
 
 }

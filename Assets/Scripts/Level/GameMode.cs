@@ -7,6 +7,7 @@ public class GameMode : MonoBehaviour
 {
     [SerializeField] private Ball _ball;
     [SerializeField] private LevelGenerator _levelGenerator;
+    [SerializeField] private bool _cleanOldPieces;
 
     public List<FloorPiece> TowerPieces;
     public UnityAction OnFloorReached;
@@ -36,7 +37,7 @@ public class GameMode : MonoBehaviour
                 await Task.Yield();
             }
 
-            DestroyOldPiece(i);
+            if (_cleanOldPieces) DestroyOldPiece(i);
             //_levelGenerator.SpawnRandomPiece(i + 10, i * 0.001f);
             TowerPieces[i].Shrink();
             OnFloorReached?.Invoke();

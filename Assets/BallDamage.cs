@@ -1,30 +1,47 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class BallDamage : MonoBehaviour
 {
     [SerializeField] private DefeatStateTrigger _defeatSateTrigger;
-    [SerializeField] private int _lifes = 1;
     [SerializeField] private float _cooldown;
 
     private Coroutine _cooldowdCoroutine;
 
-    public UnityAction OnDamage;
+    public UnityAction OnShieldBreak;
+    public UnityAction<PowerUp> OnShieldCanceled;
+
+    private List<PowerUp> _shields = new List<PowerUp>(3);
 
     public void Damage()
     {
-        if (_lifes > 0)
+        if (CheckForShields()) return;
+        Kill();
+    }
+
+    public void AddShield(PowerUp shield)
+    {
+        _shields.Add(shield);
+    }
+
+    private bool CheckForShields()
+    {
+        bool state = _shields.Count > 0;
+
+        if (state)
         {
             if (_cooldowdCoroutine == null)
             {
-                _lifes--;
-                OnDamage?.Invoke();
+                int index = _shields.Count - 1;
+                OnShieldCanceled?.Invoke(_shields[index]);
+                _shields.RemoveAt(index);
+                OnShieldBreak?.Invoke();
                 _cooldowdCoroutine = StartCoroutine(CoolDowdCoroutine());
             }
-            return;
         }
-        Kill();
+        return state;
     }
 
     private void Kill()

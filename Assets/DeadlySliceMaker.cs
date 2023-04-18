@@ -15,11 +15,10 @@ public class DeadlySliceMaker : MonoBehaviour
 
             float roll = Random.Range(0.0f, 1.0f);
 
-            if (roll <= deadlyrobability)
-            {
-                MakeSlieceDeadly(transform.GetChild(i));
-                deadlySliceCounter ++;
-            }
+            if (roll > deadlyrobability) return;
+            
+            MakeSlieceDeadly(transform.GetChild(i));
+            deadlySliceCounter ++;
         }
     }
 
