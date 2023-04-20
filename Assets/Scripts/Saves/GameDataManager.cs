@@ -11,6 +11,7 @@ public class GameDataManager : MonoBehaviour
     [SerializeField] private int _maxCombo;
     [SerializeField] private float _sensitivity;
     [SerializeField] private int _skinID;
+    [SerializeField] private bool _clearDayaOnAwake;
 
     public static GameDataManager Instance;
     public int Gems;
@@ -27,6 +28,7 @@ public class GameDataManager : MonoBehaviour
 
     private void Awake()
     {
+        if (_clearDayaOnAwake) SaveSystem.Cleardata();
         LoadGameData();
         Instance = this;
     }

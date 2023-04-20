@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FpsSettings : MonoBehaviour
 {
-    [SerializeField] private int _targetFPS = 60;
+    [SerializeField] private int _targetFPS = 70;
 
     void Start()
     {

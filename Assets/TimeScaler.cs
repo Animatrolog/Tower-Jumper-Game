@@ -9,7 +9,6 @@ public class TimeScaler : MonoBehaviour
     {
         _originalTimeScale = Time.timeScale;
         _originalFixedDeltaTime = Time.fixedDeltaTime;
-        Debug.Log("Original Values TimeScale" + _originalTimeScale + " Fixed time " + _originalFixedDeltaTime);
     }
 
     public static void SetTimeScale(float newTimeScale)

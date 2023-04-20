@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11128b3a9800f944492710080effa5b8, type: 3}
+  m_Name: SunsetEnvironmentPreset
+  m_EditorClassIdentifier: 
+  _skyboxMaterial: {fileID: 2100000, guid: f15c336556dd74f40aaca655f7767970, type: 2}
+  _skyboxLightIntensity: 1
+  _directLightRotation: {x: 160, y: 0, z: 0}
+  _directLightColor: {r: 1, g: 0.95720565, b: 0.8349056, a: 0}
+  _directLightIntensity: 1

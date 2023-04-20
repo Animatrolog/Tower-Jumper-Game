@@ -8,6 +8,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private List<FloorPiece> _poolOfPrefabs;
     [SerializeField] private FloorPiece _firstPiece;
     [SerializeField] private GameObject _corePiece;
+    [SerializeField] private Transform _finishPiece;
     [SerializeField] private Vector3 _offset;
     [SerializeField] private BallMovement _ball;
     [SerializeField] private float _difficultyFactor = 0.001f;
@@ -57,6 +58,7 @@ public class LevelGenerator : MonoBehaviour
             SpawnRandomPiece(i, deadlySliceProbability);
         }
         Instantiate(_corePiece, _offset * _levelLenght, Quaternion.identity, transform);
+        _finishPiece.transform.position = _offset * (_levelLenght + 0.5f);
         OnLevelGenerationCompleate?.Invoke();
     }
 

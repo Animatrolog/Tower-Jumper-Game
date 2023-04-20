@@ -28,12 +28,13 @@ public class MeteorMode : MonoBehaviour
 
     private void FixedUpdate()
     {
-        SetMeteorMode(_rigidbody.velocity.magnitude > _meteorThreshold || _foreceMeteorMode);
+        bool state = _rigidbody.velocity.magnitude > _meteorThreshold || _foreceMeteorMode;
+        if ( state == IsMeteorMode) return;
+        SetMeteorMode(state);
     }
 
     private void SetMeteorMode(bool state)
     {
-        if (state == IsMeteorMode) return;
         IsMeteorMode = state;
         if (state) OnMeteorMode?.Invoke();
         PlayParticles(state);
@@ -43,14 +44,16 @@ public class MeteorMode : MonoBehaviour
     public void ForceMeteorMode()
     {
         _jump.CancelJump();
+        SetMeteorMode(true);
         _velocityBreakFactor = 1f;
+        _rigidbody.velocity = _rigidbody.velocity.magnitude * 1.5f * Vector3.down;
         _foreceMeteorMode = true;
     }
 
     public void ResetMeteorMode()
     {
         _velocityBreakFactor = _originalBreakFactor;
-        _rigidbody.velocity = Vector3.down * 5f;
+        _rigidbody.velocity /= 2f;
         OnMeteorCanceled?.Invoke();
         _foreceMeteorMode = false;
     }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11128b3a9800f944492710080effa5b8, type: 3}
+  m_Name: ClowdySkyEnvironment
+  m_EditorClassIdentifier: 
+  _skyboxMaterial: {fileID: 2100000, guid: 3e5399bd195de7649b874f58c1b9f8a3, type: 2}
+  _skyboxLightIntensity: 1
+  _directLightRotation: {x: 135, y: 0, z: 0}
+  _directLightColor: {r: 0.8901961, g: 0.9883614, b: 1, a: 0}
+  _directLightIntensity: 1

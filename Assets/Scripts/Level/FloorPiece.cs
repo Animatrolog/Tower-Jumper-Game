@@ -16,8 +16,8 @@ public class FloorPiece : MonoBehaviour
     public void Initialize(float deadlySliceProbability, float rotatingProbability)
     {
         _deadlySliceMaker.MakeDeadlySlices(deadlySliceProbability);
-        _powerUpSpawner.SpawnPowerUp(deadlySliceProbability);
-        MakePieceRotate(rotatingProbability);
+        _powerUpSpawner.SpawnPowerUp(deadlySliceProbability * 0.5f);
+        MakePieceRotate(rotatingProbability * 0.25f);
     }
 
     private void MakePieceRotate(float probability)

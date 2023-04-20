@@ -30,16 +30,7 @@ public class JumpTrigger : MonoBehaviour
             return;
         }
 
-        
-        if (_meteorMode.IsMeteorMode)
-        {
-            FloorPiece piece = collision.gameObject.GetComponentInParent<FloorPiece>();
-            if (piece == null) return;
-            piece.Break();
-            OnPieceBreak?.Invoke();
-            _rigidbody.velocity = _ball.LastFixedVelocity * _meteorMode.VelocityBreakFactor;
-            return;
-        }
+        if (OnMeteorMode(collision)) return;
 
         if (collision.gameObject.CompareTag("Deadly"))
         {
@@ -50,15 +41,27 @@ public class JumpTrigger : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
+        if (OnMeteorMode(collision)) return;
+        _jump.Jump();
+    }
+
+    private bool OnMeteorMode(Collision collision)
+    {
         if (_meteorMode.IsMeteorMode)
         {
             FloorPiece piece = collision.gameObject.GetComponentInParent<FloorPiece>();
-            if (piece == null) return;
+            if (piece == null)
+            {
+                _meteorMode.ResetMeteorMode();
+                _jump.Jump();
+                return true;
+            }
             piece.Break();
             OnPieceBreak?.Invoke();
             _rigidbody.velocity = _ball.LastFixedVelocity * _meteorMode.VelocityBreakFactor;
-            return;
+            return true;
         }
+        return false;
     }
 
 }

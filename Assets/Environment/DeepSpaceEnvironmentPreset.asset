@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11128b3a9800f944492710080effa5b8, type: 3}
+  m_Name: DeepSpaceEnvironmentPreset
+  m_EditorClassIdentifier: 
+  _skyboxMaterial: {fileID: 2100000, guid: 369b9ebe3a62b904dbc19bd332b44086, type: 2}
+  _skyboxLightIntensity: 4
+  _directLightRotation: {x: 75, y: 0, z: 0}
+  _directLightColor: {r: 0.49553776, g: 0, b: 1, a: 0}
+  _directLightIntensity: 0.5
