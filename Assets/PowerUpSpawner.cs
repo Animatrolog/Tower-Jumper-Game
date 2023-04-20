@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PowerUpSpawner : MonoBehaviour
 {
-    [SerializeField] private List<PowerUp> _poolOfPowerUps;
+    [SerializeField] private List<PowerupHolder> _poolOfPowerUps;
 
     public void SpawnPowerUp(float probability)
     {

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,37 +10,17 @@ public class BallDamage : MonoBehaviour
     private Coroutine _cooldowdCoroutine;
 
     public UnityAction OnShieldBreak;
-    public UnityAction<PowerUp> OnShieldCanceled;
 
-    private List<PowerUp> _shields = new List<PowerUp>(3);
+    public bool HasShield;
 
     public void Damage()
     {
-        if (CheckForShields()) return;
-        Kill();
-    }
-
-    public void AddShield(PowerUp shield)
-    {
-        _shields.Add(shield);
-    }
-
-    private bool CheckForShields()
-    {
-        bool state = _shields.Count > 0;
-
-        if (state)
+        if (HasShield)
         {
-            if (_cooldowdCoroutine == null)
-            {
-                int index = _shields.Count - 1;
-                OnShieldCanceled?.Invoke(_shields[index]);
-                _shields.RemoveAt(index);
-                OnShieldBreak?.Invoke();
-                _cooldowdCoroutine = StartCoroutine(CoolDowdCoroutine());
-            }
+            _cooldowdCoroutine ??= StartCoroutine(CoolDowdCoroutine());
+            return;
         }
-        return state;
+        Kill();
     }
 
     private void Kill()
@@ -52,7 +31,9 @@ public class BallDamage : MonoBehaviour
 
     private IEnumerator CoolDowdCoroutine()
     {
+        OnShieldBreak?.Invoke();
         yield return new WaitForSeconds(_cooldown);
+        HasShield = false;
         _cooldowdCoroutine = null;
     }
 }

@@ -4,33 +4,26 @@ using UnityEngine.UI;
 
 public class PowerupIconManager : MonoBehaviour
 {
-    [SerializeField] private PowerUps _powerUps;
-    [SerializeField] private Image _powerUpIcon;
-    
-    private Dictionary<PowerUp, Image> _images = new Dictionary<PowerUp, Image>();
+    [SerializeField] private Image _powerupIconPrefab;
 
-    private void OnEnable()
+    private Dictionary<Powerup, Image> _images = new Dictionary<Powerup, Image>();
+
+    public void ShowPowerupIcon(Powerup powerup) 
     {
-        _powerUps.OnPowerUp += ShowPowerUpIcon;
-        _powerUps.OnPowerUpCanceled += HidePowerUpIcon;
+        _images[powerup] = (Instantiate(_powerupIconPrefab, transform));
+        powerup.OnProgressChanged += UpdateSliderValue;
+        _images[powerup].sprite = powerup.Icon;
     }
 
-    private void OnDisable()
+    public void HidePowerupIcon(Powerup powerup)
     {
-        _powerUps.OnPowerUp -= ShowPowerUpIcon;
-        _powerUps.OnPowerUpCanceled -= HidePowerUpIcon;
+        Destroy(_images[powerup].gameObject);
+        powerup.OnProgressChanged -= UpdateSliderValue;
     }
 
-    private void ShowPowerUpIcon(PowerUp powerUp) 
+    private void UpdateSliderValue(Powerup powerup)
     {
-        _images[powerUp] = Instantiate(_powerUpIcon, transform);
-        _images[powerUp].sprite = powerUp.Icon;
-        if(powerUp.Duration > 0)
-        { }
+        _images[powerup].GetComponent<Slider>().value = 1 - powerup.Progress;
     }
 
-    private void HidePowerUpIcon(PowerUp powerUp)
-    {
-        Destroy(_images[powerUp].gameObject);
-    }
 }

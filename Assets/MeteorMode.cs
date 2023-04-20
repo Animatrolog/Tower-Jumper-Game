@@ -14,14 +14,16 @@ public class MeteorMode : MonoBehaviour
     private Rigidbody _rigidbody;
 
     public UnityAction OnMeteorMode;
-    public UnityAction<PowerUp> OnMeteorCanceled;
+    public UnityAction OnMeteorCanceled;
     public Vector3 LastVelocity { get; private set; }
     public bool IsMeteorMode { get; private set; }
     private bool _foreceMeteorMode;
+    private float _originalBreakFactor;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _originalBreakFactor = _velocityBreakFactor;
     }
 
     private void FixedUpdate()
@@ -38,21 +40,18 @@ public class MeteorMode : MonoBehaviour
 
     }
 
-    public void ForceMeteorMode(PowerUp powerUp)
-    {
-        StartCoroutine(ForceMeteorCoroutine(powerUp));
-    }
-
-    private IEnumerator ForceMeteorCoroutine(PowerUp powerUp)
+    public void ForceMeteorMode()
     {
         _jump.CancelJump();
-        float cachedFactor = _velocityBreakFactor;
         _velocityBreakFactor = 1f;
         _foreceMeteorMode = true;
-        yield return new WaitForSeconds(powerUp.Duration);
-        _velocityBreakFactor = cachedFactor;
+    }
+
+    public void ResetMeteorMode()
+    {
+        _velocityBreakFactor = _originalBreakFactor;
         _rigidbody.velocity = Vector3.down * 5f;
-        OnMeteorCanceled?.Invoke(powerUp);
+        OnMeteorCanceled?.Invoke();
         _foreceMeteorMode = false;
     }
 

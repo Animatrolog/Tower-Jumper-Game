@@ -7,13 +7,11 @@ public class MouseInput : MonoBehaviour
     [SerializeField] private BallMovement _crowd;
     public float Sensitivity;
 
-    private Transform _cameraTransform;
     private Transform _crowdTransform;
     private float _xDeltaPos;
 
     private void Start()
     {
-        _cameraTransform = _camera.transform;
         _crowdTransform = (_crowd as MonoBehaviour).transform;
         _xDeltaPos = Input.mousePosition.x;
     }

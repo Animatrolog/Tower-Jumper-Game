@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -33,6 +34,7 @@ public class JumpTrigger : MonoBehaviour
         if (_meteorMode.IsMeteorMode)
         {
             FloorPiece piece = collision.gameObject.GetComponentInParent<FloorPiece>();
+            if (piece == null) return;
             piece.Break();
             OnPieceBreak?.Invoke();
             _rigidbody.velocity = _ball.LastFixedVelocity * _meteorMode.VelocityBreakFactor;
@@ -51,6 +53,7 @@ public class JumpTrigger : MonoBehaviour
         if (_meteorMode.IsMeteorMode)
         {
             FloorPiece piece = collision.gameObject.GetComponentInParent<FloorPiece>();
+            if (piece == null) return;
             piece.Break();
             OnPieceBreak?.Invoke();
             _rigidbody.velocity = _ball.LastFixedVelocity * _meteorMode.VelocityBreakFactor;

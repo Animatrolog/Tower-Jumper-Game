@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkyboxChanger : MonoBehaviour
+public class EnviromentChanger : MonoBehaviour
 {
     [SerializeField] private Material[] _skyboxMaterials;
     private GameDataManager _gameDataManager;
