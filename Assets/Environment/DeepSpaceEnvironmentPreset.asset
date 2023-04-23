@@ -15,5 +15,6 @@ MonoBehaviour:
   _skyboxMaterial: {fileID: 2100000, guid: 369b9ebe3a62b904dbc19bd332b44086, type: 2}
   _skyboxLightIntensity: 4
   _directLightRotation: {x: 75, y: 0, z: 0}
-  _directLightColor: {r: 0.49553776, g: 0, b: 1, a: 0}
-  _directLightIntensity: 0.5
+  _directLightColor: {r: 0.7923974, g: 0.5896226, b: 1, a: 0}
+  _directLightIntensity: 0.6
+  _sliceColor: {r: 0.61557245, g: 0, b: 1, a: 0}

@@ -39,11 +39,11 @@ public class JumpTrigger : MonoBehaviour
         _jump.Jump();
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        if (OnMeteorMode(collision)) return;
-        _jump.Jump();
-    }
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    if (OnMeteorMode(collision)) return;
+    //    _jump.Jump();
+    //}
 
     private bool OnMeteorMode(Collision collision)
     {

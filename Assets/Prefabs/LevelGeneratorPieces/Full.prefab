@@ -107,8 +107,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _poolOfPowerUps:
   - {fileID: 4828263007381154896, guid: d54fcd3dbac7019419fa779ff6bdba0f, type: 3}
-  - {fileID: -4261565577060635237, guid: b66ecaec20118094887c76df3c6cbec2, type: 3}
   - {fileID: -4411852293499962960, guid: fafdf68aecda7884fb76823b2a333b72, type: 3}
+  - {fileID: -4261565577060635237, guid: b66ecaec20118094887c76df3c6cbec2, type: 3}
 --- !u!114 &8715478980977287895
 MonoBehaviour:
   m_ObjectHideFlags: 0

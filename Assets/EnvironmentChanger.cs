@@ -7,6 +7,7 @@ public class EnvironmentChanger : MonoBehaviour
     [SerializeField] private List<EnvironmentPreset> _environmentPresets;
     [SerializeField] private Transform _directLightTransform;
     [SerializeField] private int _changePeriod;
+    [SerializeField] private Material _sliceMaterial;
 
     private GameDataManager _gameDataManager;
 
@@ -20,9 +21,8 @@ public class EnvironmentChanger : MonoBehaviour
     {
         if (presetId > _environmentPresets.Count - 1)
         {
-            int hueta = (int)(Mathf.Floor(presetId / _environmentPresets.Count) * _environmentPresets.Count);
-            presetId -= hueta;
-            Debug.Log("index" + presetId + " - " + hueta);
+            int overflow = (int)(Mathf.Floor(presetId / _environmentPresets.Count) * _environmentPresets.Count);
+            presetId -= overflow;
         }
 
         EnvironmentPreset preset = _environmentPresets[presetId];
@@ -32,6 +32,7 @@ public class EnvironmentChanger : MonoBehaviour
         Light directLight = _directLightTransform.GetComponent<Light>();
         directLight.intensity = preset.DirectLightIntensity;
         directLight.color = preset.DirectLightColor;
+        _sliceMaterial.color = _environmentPresets[presetId].SliceColor;
         DynamicGI.UpdateEnvironment();
     }
 }

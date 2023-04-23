@@ -8,10 +8,12 @@ public class EnvironmentPreset : ScriptableObject
     [SerializeField] private Vector3 _directLightRotation;
     [SerializeField] private Color _directLightColor;
     [SerializeField] private float _directLightIntensity;
+    [SerializeField] private Color _sliceColor;
 
     public Material SkyboxMaterial => _skyboxMaterial;
     public float SkyboxLightIntensity => _skyboxLightIntensity;
     public Vector3 DirectLightRotation => _directLightRotation;
     public Color DirectLightColor => _directLightColor;
     public float DirectLightIntensity => _directLightIntensity;
+    public Color SliceColor => _sliceColor;
 }

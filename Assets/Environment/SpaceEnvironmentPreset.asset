@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: SpaceEnvironmentPreset
   m_EditorClassIdentifier: 
   _skyboxMaterial: {fileID: 2100000, guid: 16bc8a9d5451ca44d8f70575adbece3a, type: 2}
-  _skyboxLightIntensity: 1
-  _directLightRotation: {x: 145, y: 0, z: 0}
+  _skyboxLightIntensity: 2
+  _directLightRotation: {x: 160, y: 0, z: 0}
   _directLightColor: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  _directLightIntensity: 0.3
+  _directLightIntensity: 0.45
+  _sliceColor: {r: 0.3665117, g: 0.3379762, b: 0.46226418, a: 0}

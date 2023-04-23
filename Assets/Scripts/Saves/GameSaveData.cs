@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 [System.Serializable]
 public class GameSaveData
 {
@@ -11,6 +13,7 @@ public class GameSaveData
     public float Sensitivity;
     public bool IsSoundEnabled;
     public bool IsAdsEnabled;
+    public List<int> UnlockedSkins;
 
     public GameSaveData(GameDataManager gameDataManager)
     {

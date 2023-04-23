@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11128b3a9800f944492710080effa5b8, type: 3}
-  m_Name: PinkSkyEnvironmentPreset
+  m_Name: CompetitiveEnvironmentPreset
   m_EditorClassIdentifier: 
-  _skyboxMaterial: {fileID: 2100000, guid: fe4e130f9947345a2b213cb5038851a2, type: 2}
-  _skyboxLightIntensity: 1.1
-  _directLightRotation: {x: 160, y: 0, z: 0}
-  _directLightColor: {r: 1, g: 0.8349056, b: 0.8349056, a: 0}
-  _directLightIntensity: 0.75
-  _sliceColor: {r: 1, g: 0.8160377, b: 0.8160377, a: 0}
+  _skyboxMaterial: {fileID: 2100000, guid: 73324b55f67f54c7bbf43204788b8bbe, type: 2}
+  _skyboxLightIntensity: 1
+  _directLightRotation: {x: 45, y: 0, z: 0}
+  _directLightColor: {r: 1, g: 1, b: 1, a: 0}
+  _directLightIntensity: 1
+  _sliceColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 0}

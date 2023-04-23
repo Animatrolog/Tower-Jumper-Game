@@ -6,7 +6,8 @@ public class CenterMovement : MonoBehaviour
 
     void Update()
     {
-        if(_ball.position.y < transform.position.y)
-            transform.Translate(((_ball.position.y - transform.position.y) * Vector3.up));
+        var piecePosition = _ball.position;
+        if (piecePosition.y  < transform.position.y)
+            transform.Translate((piecePosition.y - transform.position.y) * Vector3.up);
     }
 }

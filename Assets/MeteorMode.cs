@@ -53,7 +53,8 @@ public class MeteorMode : MonoBehaviour
     public void ResetMeteorMode()
     {
         _velocityBreakFactor = _originalBreakFactor;
-        _rigidbody.velocity /= 2f;
+        _rigidbody.velocity = Vector3.zero;
+        _jump.Jump();
         OnMeteorCanceled?.Invoke();
         _foreceMeteorMode = false;
     }

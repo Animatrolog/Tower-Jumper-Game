@@ -8,19 +8,44 @@ public class GameMode : MonoBehaviour
     [SerializeField] private Ball _ball;
     [SerializeField] private LevelGenerator _levelGenerator;
     [SerializeField] private bool _cleanOldPieces;
+    [SerializeField] private int _levelLenght;
+    [SerializeField] private bool _isInfiniteMode;
+
+    private int _level;
+    private GameDataManager _gameDataManager;
 
     public List<FloorPiece> TowerPieces;
     public UnityAction OnFloorReached;
     public FloorPiece CurrentPiece { get; private set; }
 
-    private void OnEnable()
+    public void NextLevel()
     {
-        _levelGenerator.OnLevelGenerationCompleate += StartGameMode;
+        _level++;
+        _gameDataManager.Level = _level;
     }
 
-    private void OnDisable()
+    private void Awake()
     {
-        _levelGenerator.OnLevelGenerationCompleate -= StartGameMode;
+        _gameDataManager = GameDataManager.Instance;
+    }
+
+    private void Start()
+    {
+        LoadLevelData();
+        if (_isInfiniteMode)
+        {
+            _levelGenerator.GenerateLevel(_level, 10, true);
+            StartGameMode();
+            return;
+        }
+        _levelGenerator.GenerateLevel(_level, _levelLenght, false);
+        StartGameMode();
+    }
+
+    private void LoadLevelData()
+    {
+        if (_gameDataManager != null)
+            _level = _gameDataManager.Level;
     }
 
     private async void FloorCheck()
@@ -38,7 +63,7 @@ public class GameMode : MonoBehaviour
             }
 
             if (_cleanOldPieces) DestroyOldPiece(i);
-            //_levelGenerator.SpawnRandomPiece(i + 10, i * 0.001f);
+            if (_isInfiniteMode) _levelGenerator.SpawnRandomPiece(i + 10, i * 0.002f);
             TowerPieces[i].Shrink();
             OnFloorReached?.Invoke();
         }

@@ -17,7 +17,8 @@ public class BallDamage : MonoBehaviour
     {
         if (HasShield)
         {
-            _cooldowdCoroutine ??= StartCoroutine(CoolDowdCoroutine());
+            if(_cooldowdCoroutine == null ) 
+                _cooldowdCoroutine = StartCoroutine(CoolDowdCoroutine());
             return;
         }
         Kill();
