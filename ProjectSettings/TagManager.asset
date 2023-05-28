@@ -4,12 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - FxTemporaire
   - Deadly
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - IconRenderer
   - Water
   - UI
   - 

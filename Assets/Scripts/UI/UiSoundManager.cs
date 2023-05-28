@@ -13,6 +13,7 @@ public class UiSoundManager : MonoBehaviour
     [SerializeField] private AudioClip _comboClip;
     [SerializeField] private AudioClip _failClip;
     [SerializeField] private AudioClip _breakClip;
+    [SerializeField] private AudioClip _finishClip;
 
     public static UiSoundManager Instance;
 
@@ -90,5 +91,11 @@ public class UiSoundManager : MonoBehaviour
     {
         _audioSource.pitch = 1f;
         _audioSource.PlayOneShot(_breakClip);
+    }
+
+    public void PlayFinish()
+    {
+        _audioSource.pitch = 1f;
+        _audioSource.PlayOneShot(_finishClip);
     }
 }

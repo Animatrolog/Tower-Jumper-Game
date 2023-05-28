@@ -13,8 +13,8 @@ public class LevelCounter : MonoBehaviour
     {
         _gameDataManager = GameDataManager.Instance;
         if(_prefix != null)
-            _text.text = _prefix.GetText(LanguageManager.Instance.Language) + (_gameDataManager.Level + _additionalNumber);
+            _text.text = _prefix.GetText(LanguageManager.Instance.Language) + (_gameDataManager.GameSaveData.Level + _additionalNumber);
         else
-            _text.text = (_gameDataManager.Level + _additionalNumber).ToString();
+            _text.text = (_gameDataManager.GameSaveData.Level + _additionalNumber).ToString();
     }
 }

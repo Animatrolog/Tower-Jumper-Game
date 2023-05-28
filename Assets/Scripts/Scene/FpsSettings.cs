@@ -4,7 +4,7 @@ public class FpsSettings : MonoBehaviour
 {
     [SerializeField] private int _targetFPS = 70;
 
-    void Start()
+    void Awake()
     {
         Application.targetFrameRate = _targetFPS;
     }

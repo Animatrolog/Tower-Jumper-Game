@@ -16,7 +16,7 @@ public class SlowMoPowerup : Powerup
         base.ActivatePowerUp(targetBall);
     }
 
-    protected override void DeactivatePowerUp()
+    public override void DeactivatePowerUp()
     {
         if (GameStateManager.CurrentGameState == GameState.Game) 
             TimeScaler.SetTimeScale(1f);

@@ -1,22 +1,13 @@
+using Agava.YandexGames;
+using System;
 using UnityEngine;
 
 public class InterstitialAdHandler : MonoBehaviour
 {
     [SerializeField] private AdPanel _adPanel;
 
-    private void OnEnable()
-    {
-        YaSDK.OnInterstitialShown += AdClose;
-        YaSDK.OnInterstitialFailed += AdClose;
-    }
-
-    private void OnDisable()
-    {
-        YaSDK.OnInterstitialShown -= AdClose;
-        YaSDK.OnInterstitialFailed -= AdClose;
-    }
-
     public static InterstitialAdHandler Instance;
+    public Action OnInterstitialShown;
 
     private void Awake()
     {
@@ -25,14 +16,23 @@ public class InterstitialAdHandler : MonoBehaviour
 
     public bool ShowAd()
     {
-        if (!YaSDK.Instance.IsInterstitialReady) return false;
-        YaSDK.Instance.ShowInterstitial();
-        _adPanel.ShowPanel(true);
-        return true;
+        if(InterstitialAdTimer.Instance.TryToStartTimer())
+        {
+#if UNITY_EDITOR
+            Debug.Log("Here is your Interstitial ad massage !");
+            AdClose();
+#else
+            InterstitialAd.Show(onCloseCallback: (bool state) => AdClose(), onErrorCallback: (string err) => AdClose());
+            _adPanel.ShowPanel(true);
+            return true;
+#endif
+        }
+        return false;
     }
 
     private void AdClose()
     {
         _adPanel.ShowPanel(false);
+        OnInterstitialShown?.Invoke();
     }
 }
