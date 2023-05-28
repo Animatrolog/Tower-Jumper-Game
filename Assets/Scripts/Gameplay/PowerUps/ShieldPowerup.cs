@@ -11,10 +11,10 @@ public class ShieldPowerup : Powerup
         base.ActivatePowerUp(targetBall);
     }
 
-    protected override void DeactivatePowerUp()
+    public override void DeactivatePowerUp()
     {
-        _ballDamage.HasShield = false;
         _ballDamage.OnShieldBreak -= DeactivatePowerUp;
+        _ballDamage.Damage();
 
         base.DeactivatePowerUp();
     }

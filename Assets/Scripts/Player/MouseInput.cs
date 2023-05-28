@@ -21,10 +21,9 @@ public class MouseInput : MonoBehaviour
         HandleInput();
     }
 
-
+    private float _angle;
     public void HandleInput()
     {
-        float angle = 0f;
         if (Input.GetMouseButton(0))
         {
             _xDeltaPos = Input.mousePosition.x - _xDeltaPos;
@@ -33,17 +32,16 @@ public class MouseInput : MonoBehaviour
             {
                 _xDeltaPos = 0;
             }
+
             if (_xDeltaPos != 0)
             {
                 float screenWidth = Screen.width;
                 float aspectRatio = screenWidth / Screen.height;
-                angle = (_xDeltaPos / Screen.width) * 360f * Sensitivity * aspectRatio;
+                _angle += (_xDeltaPos / Screen.width) * 360f * Sensitivity * aspectRatio;
             }
 
             _xDeltaPos = Input.mousePosition.x;
         }
-        Vector3 crowdPosition = Vector3.Scale(_crowdTransform.position, new(1, 0, 1));
-
-        _crowd.TargetPosition = Quaternion.Euler(0, angle, 0) * (crowdPosition.normalized * _radius);
+        _crowd.TargetAngle = _angle;
     }
 }

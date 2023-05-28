@@ -10,7 +10,7 @@ public class BoostPowerup : Powerup
         base.ActivatePowerUp(targetBall);
     }
 
-    protected override void DeactivatePowerUp()
+    public override void DeactivatePowerUp()
     {
         _meteorMode.ResetMeteorMode();
 

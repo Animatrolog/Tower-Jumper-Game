@@ -5,12 +5,8 @@ public class BallAudio : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private MeteorMode _meteorMode;
     [SerializeField] private BallJump _jump;
-    [SerializeField] private BallDamage _damage;
-    [SerializeField] private AudioClip _damageClip;
     [SerializeField] private AudioClip _jumpClip;
     [SerializeField] private AudioClip _meteorClip;
-
-    private ScoreManager _combo;
 
     private void Awake()
     {
@@ -19,14 +15,12 @@ public class BallAudio : MonoBehaviour
 
     private void OnEnable()
     {
-        _damage.OnShieldBreak += PlayDamage;
         _jump.OnJump += PlayJump;
         _meteorMode.OnMeteorMode += PlayMeteor;
     }
 
     private void OnDisable()
     {
-        _damage.OnShieldBreak -= PlayDamage;
         _jump.OnJump -= PlayJump;
         _meteorMode.OnMeteorMode -= PlayMeteor;
     }
@@ -41,10 +35,5 @@ public class BallAudio : MonoBehaviour
     private void PlayMeteor()
     {
         _audioSource.PlayOneShot(_meteorClip);
-    }
-
-    private void PlayDamage()
-    {
-        _audioSource.PlayOneShot(_damageClip);
     }
 }

@@ -19,8 +19,8 @@ public class SettingsToggles : MonoBehaviour
 
     private void LoadSettings()
     {
-        _soundToggle.isOn = _gameDataManager.IsSoundEnabled;
-        _uiSoundManager.EnableSound(_gameDataManager.IsSoundEnabled);
+        _soundToggle.isOn = _gameDataManager.GameSaveData.IsSoundEnabled;
+        _uiSoundManager.EnableSound(_gameDataManager.GameSaveData.IsSoundEnabled);
     }
 
 }

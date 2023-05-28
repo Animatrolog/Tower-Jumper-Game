@@ -1,38 +1,21 @@
+using Agava.YandexGames;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class RewardedAdHandler : MonoBehaviour
 {
-    [SerializeField] private string _placementName;
     [SerializeField] private UnityEvent _onRewardEarned;
     [SerializeField] private AdPanel _adPanel;
 
-    private void OnEnable()
-    {
-        YaSDK.Instance.OnRewardedAdReward += RewardedVideoAdRewardedEvent;
-        YaSDK.Instance.OnRewardedAdClosed += HidePanel;
-        YaSDK.Instance.OnRewardedAdError += HidePanel;
-    }
-
-    private void OnDisable()
-    {
-        YaSDK.Instance.OnRewardedAdReward -= RewardedVideoAdRewardedEvent;
-        YaSDK.Instance.OnRewardedAdClosed -= HidePanel;
-        YaSDK.Instance.OnRewardedAdError -= HidePanel;
-    }
-
     public void ShowRewardedAd()
     {
+#if UNITY_EDITOR
+        Debug.Log("Here is your Rewarded ad massage !");
+        _onRewardEarned?.Invoke();
+#else
         ShowPanel();
-        YaSDK.Instance.ShowRewarded(_placementName);
-    }
-
-    private void RewardedVideoAdRewardedEvent(string placementName)
-    {
-        if (placementName == _placementName)
-        {
-            _onRewardEarned?.Invoke();
-        }
+        VideoAd.Show(onRewardedCallback: () => _onRewardEarned?.Invoke(), onCloseCallback: () => HidePanel(), onErrorCallback: (string err) => HidePanel()) ;
+#endif
     }
 
     private void ShowPanel() 

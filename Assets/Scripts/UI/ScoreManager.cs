@@ -11,10 +11,8 @@ public class ScoreManager : MonoBehaviour
     public UnityAction<int> OnScoreChange;
     public UnityAction<int> OnCombo;
     public UnityAction OnComboBreak;
-    public UnityEvent OnNewHighScore;
 
     public int Score { get; private set; }
-    public int MaxCombo { get; private set; }
 
     private void OnEnable()
     {
@@ -31,15 +29,7 @@ public class ScoreManager : MonoBehaviour
     private void ResetCombo()
     {
         if(_combo > 1)
-        {
             OnComboBreak?.Invoke();
-
-            if (_combo > MaxCombo)
-            {
-                MaxCombo = _combo;
-                OnNewHighScore?.Invoke();
-            }
-        }
         _combo = 0;
     }
 

@@ -1,3 +1,4 @@
+using Agava.YandexGames;
 using UnityEngine;
 
 public class LanguageManager : MonoBehaviour
@@ -22,9 +23,8 @@ public class LanguageManager : MonoBehaviour
 
     private void GetLanguage()
     {
-#if UNITY_EDITOR
-#else
-        _language = YaSDK.Instance.GetLanguage();
+#if !UNITY_EDITOR
+       _language = YandexGamesSdk.Environment.i18n.lang;
 #endif
     }
 }

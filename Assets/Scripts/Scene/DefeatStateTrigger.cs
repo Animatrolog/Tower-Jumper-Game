@@ -12,7 +12,7 @@ public class DefeatStateTrigger : MonoBehaviour
         
         if (InterstitialAdHandler.Instance.ShowAd())
         {
-            YaSDK.OnInterstitialShown += _resurector.PrepareResurection;
+            InterstitialAdHandler.Instance.OnInterstitialShown += _resurector.PrepareResurection;
         }
         else _resurector.PrepareResurection();
 

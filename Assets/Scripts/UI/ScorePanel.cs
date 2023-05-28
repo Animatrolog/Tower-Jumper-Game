@@ -1,4 +1,5 @@
 
+using Agava.YandexGames;
 using TMPro;
 using UnityEngine;
 
@@ -16,7 +17,11 @@ public class ScorePanel : MonoBehaviour
 
     private void Start()
     { 
-        _gameDataManager.Coins += _scoreManager.Score;
+        _gameDataManager.GameSaveData.GameScore += _scoreManager.Score;
         _counterText.text = _scoreManager.Score.ToString();
+#if !UNITY_EDITOR
+        if(PlayerAccount.IsAuthorized)
+            Leaderboard.SetScore("LeaderBoard", _gameDataManager.GameSaveData.GameScore);
+#endif
     }
 }

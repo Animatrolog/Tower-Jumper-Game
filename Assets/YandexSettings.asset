@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e85f6dccdb9c9cdaa30b0c7349aae5a, type: 3}
   m_Name: YandexSettings
   m_EditorClassIdentifier: 
-  buildPath: D:/Unity Projects/builds/TCJ
+  buildPath: D:/Unity Projects/builds/ff
   projectName: TowerCrushJumper

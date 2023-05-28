@@ -6,7 +6,7 @@ public class FloorPiece : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private DeadlySliceMaker _deadlySliceMaker;
     [SerializeField] private PowerUpSpawner _powerUpSpawner;
-    [SerializeField] private Rotator _rotator;
+    private Rotator _rotator;
 
     public UnityAction OnPieceBreak;
     public UnityAction OnPieceShrink;
@@ -15,13 +15,14 @@ public class FloorPiece : MonoBehaviour
 
     public void Initialize(float deadlySliceProbability, float rotatingProbability)
     {
-        _deadlySliceMaker.MakeDeadlySlices(deadlySliceProbability);
-        _powerUpSpawner.SpawnPowerUp(deadlySliceProbability * 0.5f);
+        if (_deadlySliceMaker) _deadlySliceMaker.MakeDeadlySlices(deadlySliceProbability);
+        if (_powerUpSpawner) _powerUpSpawner.SpawnPowerUp(deadlySliceProbability * 0.5f);
         MakePieceRotate(rotatingProbability * 0.25f);
     }
 
     private void MakePieceRotate(float probability)
     {
+        if (!TryGetComponent<Rotator>(out _rotator)) return;
         float roll = Random.Range(0.0f, 1.0f);
 
         if (roll <= probability)
@@ -36,7 +37,7 @@ public class FloorPiece : MonoBehaviour
     public void Break()
     {
         if(_isBreaked) return;
-        _rotator.enabled = false;
+        if(_rotator) _rotator.enabled = false;
         AnimateSlices("Break");
         OnPieceBreak?.Invoke();
         _isBreaked = true;
@@ -45,7 +46,7 @@ public class FloorPiece : MonoBehaviour
     public void Shrink()
     {
         if (_isBreaked) return;
-        _rotator.enabled = false;
+        if (_rotator) _rotator.enabled = false;
         AnimateSlices("Shrink");
         OnPieceShrink?.Invoke();
         _isBreaked = true;

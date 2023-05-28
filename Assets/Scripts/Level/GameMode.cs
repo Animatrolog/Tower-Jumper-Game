@@ -21,7 +21,7 @@ public class GameMode : MonoBehaviour
     public void NextLevel()
     {
         _level++;
-        _gameDataManager.Level = _level;
+        _gameDataManager.GameSaveData.Level = _level;
     }
 
     private void Awake()
@@ -45,7 +45,7 @@ public class GameMode : MonoBehaviour
     private void LoadLevelData()
     {
         if (_gameDataManager != null)
-            _level = _gameDataManager.Level;
+            _level = _gameDataManager.GameSaveData.Level;
     }
 
     private async void FloorCheck()

@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UIElements;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -9,6 +7,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private FloorPiece _firstPiece;
     [SerializeField] private GameObject _corePiece;
     [SerializeField] private Transform _finishPiece;
+    [SerializeField] private FloorPiece _rainbowPiece;
     [SerializeField] private Vector3 _offset;
     [SerializeField] private BallMovement _ball;
     [SerializeField] private float _difficultyAtStart = 0.2f;
@@ -36,12 +35,22 @@ public class LevelGenerator : MonoBehaviour
             SpawnRandomPiece(i, deadlySliceProbability);
         }
 
-        if (infiniteMode)
+        //if (true)//)infiniteMode)
+        //{
+        //    _finishPiece.gameObject.SetActive(false);
+        //    //return;
+        //}
+        //GenerateRainbowFinish(levelLength);
+        _finishPiece.transform.position = _offset * (levelLength + 1);
+    }
+
+    private void GenerateRainbowFinish(int levelLength)
+    {
+        for (int i = 0; i < 20; i++)
         {
-            _finishPiece.gameObject.SetActive(false);
-            return;
+            var piece = Instantiate(_rainbowPiece, _offset * (levelLength + i), Quaternion.identity, transform);
+            piece.GetComponent<RainbowColor>().SetColor(i, 0.05f);
         }
-        _finishPiece.transform.position = _offset * (levelLength + 0.5f);
     }
 
     private int _angle = 0;
@@ -55,13 +64,12 @@ public class LevelGenerator : MonoBehaviour
 
         _previousIndex = prefabIndex;
         var piece = SpawnPiece(_poolOfPrefabs[prefabIndex], index);
-
         piece.Initialize(deadlySliceProbability, deadlySliceProbability);
+        Instantiate(_corePiece, _offset * index, Quaternion.identity, transform);
     }
 
     private FloorPiece SpawnPiece(FloorPiece piecePrefab, int index)
-    {
-        Instantiate(_corePiece, _offset * index, Quaternion.identity, transform);
+    { 
         var piece = Instantiate(piecePrefab, _offset * index, Quaternion.Euler(0, _angle, 0), transform);
         TowerPieces.Add(piece);
         _angle += Random.Range(-45, 45);

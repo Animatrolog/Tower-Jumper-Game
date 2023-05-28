@@ -11,7 +11,7 @@ public class ImageColorChanger : MonoBehaviour
     {
         _colorManager = ColorChangeManager.Instance;
         _colorManager.OnColorChange += ChangeColor;
-        ChangeColor(_colorManager.CrowdColor);
+        ChangeColor(_colorManager.InterfaceColor);
     }
 
     public void ChangeColor(Color color)

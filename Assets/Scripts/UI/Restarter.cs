@@ -6,7 +6,7 @@ public class Restarter : MonoBehaviour
 {
     public void Restart()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Level");
         TimeScaler.SetTimeScale(1f);
     }
 }
