@@ -5,14 +5,13 @@ public class MouseInput : MonoBehaviour
     [SerializeField] private float _radius;
     [SerializeField] private Camera _camera;
     [SerializeField] private BallMovement _crowd;
-    public float Sensitivity;
 
-    private Transform _crowdTransform;
+    public float Sensitivity;
     private float _xDeltaPos;
+    private float _angle;
 
     private void Start()
     {
-        _crowdTransform = (_crowd as MonoBehaviour).transform;
         _xDeltaPos = Input.mousePosition.x;
     }
 
@@ -21,7 +20,6 @@ public class MouseInput : MonoBehaviour
         HandleInput();
     }
 
-    private float _angle;
     public void HandleInput()
     {
         if (Input.GetMouseButton(0))

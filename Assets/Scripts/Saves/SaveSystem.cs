@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.IO;
 using Agava.YandexGames;
+using System.Collections;
 
 public static class SaveSystem
 {
@@ -49,7 +50,7 @@ public static class SaveSystem
         }
     }
 
-    public static void TryToLoadCloudSaveData()
+    public static IEnumerator TryToLoadCloudSaveData()
     {
         if (PlayerAccount.IsAuthorized)
         {
@@ -73,24 +74,8 @@ public static class SaveSystem
                 LoadLocalSaveData();
             });
         }
-        else
-            LoadLocalSaveData();
-        //    PlayerAccount.Authorize(() =>
-        //    {
-        //        PlayerAccount.GetCloudSaveData(
-        //            (data) => LoadDataFromJson(data),
-        //            (error) =>
-        //            {
-        //                LoadLocalSaveData();
-        //                Debug.LogWarning(error);
-        //            }
-        //        ); 
-        //    },
-        //    (error) => 
-        //    { 
-        //        LoadLocalSaveData(); 
-        //        Debug.LogWarning(error); 
-        //    });
+        else LoadLocalSaveData();
+        while(_gameSaveData == null) { yield return null; }
     }
 
     private static void LoadDataFromJson(string json) 

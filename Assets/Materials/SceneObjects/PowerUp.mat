@@ -158,7 +158,7 @@ Material:
     - _BaseColor: {r: 1, g: 0.78974366, b: 0, a: 1}
     - _Color: {r: 0.5283019, g: 0, b: 0.004143481, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissionColor: {r: 0.22811052, g: 0.18014884, b: 0, a: 0.22811052}
+    - _EmissionColor: {r: 0.94031477, g: 0.74260765, b: 0, a: 0.94031477}
     - _Emmision: {r: 1, g: 0, b: 0, a: 1}
     - _Emmission: {r: 1, g: 0.82612735, b: 0, a: 1}
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}

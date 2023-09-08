@@ -15,7 +15,8 @@ public class URLImage : MonoBehaviour
 
     public void SetImageFromURL(string imageURL)
     {
-        StartCoroutine(DownloadImageCoroutine(imageURL));
+        if(gameObject.activeSelf)
+            StartCoroutine(DownloadImageCoroutine(imageURL));
     }
 
     private IEnumerator DownloadImageCoroutine(string imageURL)

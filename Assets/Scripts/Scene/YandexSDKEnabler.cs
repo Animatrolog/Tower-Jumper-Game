@@ -16,7 +16,7 @@ public class YandexSDKEnabler : MonoBehaviour
         SaveSystem.LoadLocalSaveData();
 #else
         yield return YandexGamesSdk.Initialize();
-        SaveSystem.TryToLoadCloudSaveData();
+        yield return SaveSystem.TryToLoadCloudSaveData();
 #endif
         yield return SceneManager.LoadSceneAsync("Level");
     }
