@@ -11,14 +11,21 @@ public class LeaderboardPanel : MonoBehaviour
         UpdateLeaderBoard();
     }
 
+    public void LoginUser()
+    {
+#if !UNITY_EDITOR
+        PlayerAccount.Authorize(() => LoadEntries());
+#endif
+    }
+
     public void UpdateLeaderBoard()
     {
         gameObject.SetActive(true);
 #if !UNITY_EDITOR
-        if (!PlayerAccount.IsAuthorized)
-            PlayerAccount.Authorize(() => LoadEntries());
-        else LoadEntries();
-        _loginAttention.SetActive(false);
+        if (PlayerAccount.IsAuthorized)
+        {    
+            LoadEntries();
+        }
 #endif
     }
 

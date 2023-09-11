@@ -16,7 +16,7 @@ public class InterstitialAdHandler : MonoBehaviour
 
     public bool ShowAd()
     {
-        if(InterstitialAdTimer.Instance.TryToStartTimer())
+        if (InterstitialAdTimer.Instance.TryToStartTimer())
         {
 #if UNITY_EDITOR
             Debug.Log("Here is your Interstitial ad massage !");
@@ -24,8 +24,8 @@ public class InterstitialAdHandler : MonoBehaviour
 #else
             InterstitialAd.Show(onCloseCallback: (bool state) => AdClose(), onErrorCallback: (string err) => AdClose());
             _adPanel.ShowPanel(true);
-            return true;
 #endif
+            return true;
         }
         return false;
     }

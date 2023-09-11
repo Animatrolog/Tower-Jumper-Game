@@ -1,9 +1,10 @@
 using UnityEngine;
-using UnityEngine.UI;
+using System.Linq;
 
 public class IconRenderer : MonoBehaviour
 {
     [SerializeField] private Camera _renderCamera;
+    [SerializeField] private Texture2D _texture;
 
     public static IconRenderer Instance;
 

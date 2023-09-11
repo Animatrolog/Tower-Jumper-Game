@@ -9,13 +9,7 @@ public class DefeatStateTrigger : MonoBehaviour
     public void TriggerDefeatState()
     {
         OnDefeat?.Invoke();
-        
-        if (InterstitialAdHandler.Instance.ShowAd())
-        {
-            InterstitialAdHandler.Instance.OnInterstitialShown += _resurector.PrepareResurection;
-        }
-        else _resurector.PrepareResurection();
-
+        _resurector.PrepareResurection();
         GameStateManager.Instance.SetState(GameState.Defeat);
     }
 }
