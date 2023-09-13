@@ -1,10 +1,13 @@
 using UnityEngine;
 using Agava.YandexGames;
+using UnityEngine.UI;
 
 public class LeaderboardPanel : MonoBehaviour
 {
     [SerializeField] private LeaderBoardUIManager _leaderBardUI;
     [SerializeField] private GameObject _loginAttention;
+    [SerializeField] private ScrollRect _scrollRect;
+    [SerializeField] private GameObject _scrollBar;
 
     private void OnEnable()
     {
@@ -32,6 +35,8 @@ public class LeaderboardPanel : MonoBehaviour
     private void LoadEntries()
     {
         _loginAttention.SetActive(false);
+        _scrollRect.enabled = true;
+        _scrollBar.SetActive(true);
         int playerRank = 0;
 
         Leaderboard.GetPlayerEntry("LeaderBoard", (result) =>
@@ -44,13 +49,14 @@ public class LeaderboardPanel : MonoBehaviour
 
         LeaderboardEntryResponse[] entries;
 
-        Leaderboard.GetEntries("LeaderBoard", (result) =>
+        Leaderboard.GetEntries(leaderboardName: "LeaderBoard", topPlayersCount: 3, competingPlayersCount: 3, onSuccessCallback: (result) =>
         {
             entries = result.entries;
             _leaderBardUI.ClearUIElements();
-            for (int i = 0; i < 3; i++)
+
+            for (int i = 0; i < entries.Length; i++)
             {
-                if (i > entries.Length - 1) return;
+                if(i == 3) _leaderBardUI.SpawnSepataror();
                 var entry = entries[i];
                 string name = entry.player.publicName;
                 if (string.IsNullOrEmpty(name))
@@ -58,21 +64,6 @@ public class LeaderboardPanel : MonoBehaviour
                 _leaderBardUI.SpawnUIElement(name, entry.score, entry.rank, entry.player.profilePicture, entry.rank == playerRank);
             }
 
-            if (entries.Length < 4) return;
-
-            _leaderBardUI.SpawnSepataror();
-
-            int startIndex = Mathf.Clamp(playerRank - 2, 3, entries.Length - 1);
-
-            for (int i = startIndex; i <= playerRank + 1; i++)
-            {
-                if (i > entries.Length - 1) return;
-                var entry = entries[i];
-                string name = entry.player.publicName;
-                if (string.IsNullOrEmpty(name))
-                    name = "Player";
-                _leaderBardUI.SpawnUIElement(name, entry.score, entry.rank, entry.player.profilePicture, entry.rank == playerRank);
-            }
         });
     }
 }
